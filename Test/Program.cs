@@ -18,14 +18,7 @@ namespace Test
             var context = new ModuleDbContext(new DbContextOptionsBuilder<ModuleDbContext>()
                .UseNpgsql("Host=localhost;Port=5432;Database=sandBox")
                .Options);
-            try
-            {
-                var users = context.Entities.Include(x => x.List).Select(x => new { x.Id, Names = x.List }).GroupBy(x => x.Id, (x, y) => new { x }).ToList();
-            }
-            catch (Exception e)
-            {
-
-            }
+            var users = context.Entities.Include(x => x.List).Select(x => new { x.Id, Names = x.List }).GroupBy(x => x.Id, (x, y) => new { x }).ToList();
         }
     }
 
